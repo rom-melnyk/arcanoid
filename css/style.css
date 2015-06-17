@@ -10,21 +10,39 @@ html, body {
 	font: 14px sans-serif;
 }
 
-.header, #playground, .footer {
+.header, .playground, .footer {
 	position: absolute;
 }
 
+/* ------------------------ header ------------------------ */
 .header {
 	top: 0;
 	height: 3em;
 	left: 0;
 	right: 0;
-	padding: 1em 5em;
+	padding: 1em;
 	border-bottom: 1px solid #aaa;
 	background-color: #ddd;
 }
 
-#playground {
+.header .info {
+	float: right;
+	color: #aaa;
+	font-size: 80%;
+}
+
+.header .info > span {
+	margin: 0 .5em;
+}
+
+.header .info .number {
+	font-weight: bold;
+	color: #833;
+	font-size: 14px;
+	vertical-align: middle;
+}
+/* ------------------------ playground and all the elements ------------------------ */
+.playground {
 	top: 4em;
 	bottom: 4em;
 	left: 1em;
@@ -32,12 +50,37 @@ html, body {
 	border: 1px solid #ddd;
 }
 
+.playground div {
+	position: absolute;
+}
+
+.brick {
+	width: 50px;
+	height: 20px;
+	background-color: #a62;
+}
+
+.ball {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #833;
+}
+
+.racket {
+	width: 60px;
+	height: 10px;
+	bottom: 5px;
+	background-color: #aaa;
+}
+
+/* ------------------------ footer ------------------------ */
 .footer {
 	bottom: 0;
 	height: 3em;
 	left: 0;
 	right: 0;
-	padding: 1em 5em;
+	padding: 1em;
 	text-align: center;
 	border-top: 1px solid #aaa;
 	background-color: #ddd;
@@ -45,5 +88,5 @@ html, body {
 
 .footer .copyright {
 	font-size: 80%;
-	color: #fff;
+	color: #aaa;
 }

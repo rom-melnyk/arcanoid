@@ -11,13 +11,16 @@ Branch naming:
 
 # Technologies used
 HTML, CSS, JS. No frameworks!
+**Basic understanding** of technologies required.
 
 # Run and learn
 ### What you need:
-- NodeJS;
-- a good editor (for instance, Sublime) or an IDE (for instance, WebStorm).
+- NodeJS.
+- A good editor, for instance, [Sublime](http://www.sublimetext.com/3).
 
 ### Develop and run
-- `npm install -g instant-server` &mdash; this installs the _instant-server_;
-- run `instant 8080` in the project folder;
-- open the `http://localhost:8080/index.html` in the browser.
+- `npm install -g instant-server` &mdash; this installs the _instant-server_;  
+   The server allows you to assess the content of any local folder like the internet page.  
+   Once you change any file, the server updates the page _automatically._
+- Run `instant 8080` in the project folder.
+- Open the `http://localhost:8080/index.html` in the browser.
