@@ -10,8 +10,8 @@ Branch naming:
 - **master**. This is ready prototype; you can run it.
 
 # Technologies used
-HTML, CSS, JS. No frameworks!
-**Basic understanding** of technologies required.
+HTML, CSS, JS. No frameworks!  
+   **Basic understanding** of technologies required.
 
 # Run and learn
 ### What you need:
@@ -19,7 +19,7 @@ HTML, CSS, JS. No frameworks!
 - A good editor, for instance, [Sublime](http://www.sublimetext.com/3).
 
 ### Develop and run
-- `npm install -g instant-server` &mdash; this installs the _instant-server_;  
+- `npm install -g instant-server` &mdash; this installs the _instant-server_.  
    The server allows you to assess the content of any local folder like the internet page.  
    Once you change any file, the server updates the page _automatically._
 - Run `instant 8080` in the project folder.
