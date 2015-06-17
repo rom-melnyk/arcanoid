@@ -15,7 +15,7 @@ HTML, CSS, JS. No frameworks!
 
 # Run and learn
 ### What you need:
-- NodeJS.
+- [NodeJS](https://nodejs.org/download/).
 - A good editor, for instance, [Sublime](http://www.sublimetext.com/3).
 
 ### Develop and run
