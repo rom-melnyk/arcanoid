@@ -21,6 +21,8 @@ HTML, CSS, JS. No frameworks!
 ### Develop and run
 - `npm install -g instant-server` &mdash; this installs the _instant-server_.  
    The server allows you to assess the content of any local folder like the internet page.  
-   Once you change any file, the server updates the page _automatically._
+   Once you change any file, the server updates the page _automatically._ This is very convenient for the development.
 - Run `instant 8080` in the project folder.
 - Open the `http://localhost:8080/index.html` in the browser.
+
+You can use any other server like Apache, IIS and bind it to the project folder.
