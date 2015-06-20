@@ -41,16 +41,7 @@ function createBrick (x, y) {
 	playground.appendChild(elm);
 }
 
-/**
- * Put all the elements to the playground
- */
-function createScene () {
-	for (var x = 1; x <= BRICKS_PER_ROW; x++) {
-		for (var y = 1; y <= BRICK_ROWS; y++) {
-			createBrick(x, y);
-		}
-	}
-
+function createRacket () {
 	racket = document.createElement('div');
 	racket.className = 'racket';
 	racket.style.width = brickWidth + 'px';
@@ -61,7 +52,9 @@ function createScene () {
 	racket.style.left = (playgroundWidth - brickWidth) / 2 + 'px'; // center
 
 	playground.appendChild(racket);
+}
 
+function createBall () {
 	ball = document.createElement('div');
 	ball.className = 'ball';
 	ball.style.width = brickHeight + 'px';
@@ -72,4 +65,17 @@ function createScene () {
 	ball.style.left = (playgroundWidth - brickHeight) / 2 + 'px';
 
 	playground.appendChild(ball);
+}
+
+/**
+ * Put all the elements to the playground
+ */
+function createScene () {
+	for (var x = 1; x <= BRICKS_PER_ROW; x++) {
+		for (var y = 1; y <= BRICK_ROWS; y++) {
+			createBrick(x, y);
+		}
+	}
+	createRacket();
+	createBall();
 }
