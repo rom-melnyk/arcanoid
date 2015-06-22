@@ -1,0 +1,1 @@
+var GAME = window.GAME = {};

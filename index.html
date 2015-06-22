@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>Arcanoid</title>
 	<link rel="stylesheet" href="/css/style.css"/>
-	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -22,10 +21,17 @@
 			The Arcanoid Game. Learn Javascript! &copy; <a href="https://codedoc255.wordpress.com/">Roman Melnyk</a>, 2015
 		</span>
 	</div>
+	<!-- Loading modules one by one -->
+	<script type="text/javascript" src="js/base.js"></script>
+	<script type="text/javascript" src="js/utils.js"></script>
+	<script type="text/javascript" src="js/game-object.js"></script>
+	<script type="text/javascript" src="js/playground.js"></script>
+	<script type="text/javascript" src="js/brick.js"></script>
+	<script type="text/javascript" src="js/racket.js"></script>
+	<script type="text/javascript" src="js/ball.js"></script>
+	<!-- Now go ahead with the game -->
 	<script type="text/javascript">
 		// at this point browser is already aware about all the HTML above and we can refer to any element
-		init();
-		createScene();
 	</script>
 </body>
 </html>
