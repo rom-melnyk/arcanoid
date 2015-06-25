@@ -1,3 +1,3 @@
-(function (GAME) {
-	GAME.Model.playground = null; // will be initialized later
-})(GAME);
+(function (model) {
+	model.playground = null; // will be initialized later
+})(GAME.Model);

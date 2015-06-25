@@ -1,4 +1,4 @@
-(function (GAME) {
+(function (model) {
 	/**
 	 * This is the constructor for bricks, ball and rocket
 	 * @param {String} className
@@ -10,7 +10,7 @@
 	var GameObject = function (className, x, y, width, height) {
 		this.dom = document.createElement('div');
 		this.dom.className = className;
-		GAME.Model.playground.dom.appendChild(this.dom);
+		model.playground.dom.appendChild(this.dom);
 
 		// it's easier to handle dimension as numbers in contrast to their string representation in `element.style`
 		this.x = x;
@@ -67,9 +67,9 @@
 	 * Remove appropriate DOM element
 	 */
 	GameObject.prototype.delete = function () {
-		GAME.Model.playground.dom.removeChild(this.dom);
+		model.playground.dom.removeChild(this.dom);
 		this.dom = null;
 	};
 
-	GAME.Model.GameObject = GameObject;
-})(GAME);
+	model.GameObject = GameObject;
+})(GAME.Model);
