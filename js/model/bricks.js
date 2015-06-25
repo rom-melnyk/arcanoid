@@ -1,3 +1,3 @@
 (function (model) {
-	model.bricks = null; // will be initialized later
+	model.Bricks = null; // will be initialized later
 })(GAME.Model);

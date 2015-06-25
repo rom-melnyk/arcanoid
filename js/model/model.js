@@ -12,7 +12,7 @@
 		playground.height = playground.dom.clientHeight;
 		playground.interval = 5;
 
-		GAME.Model.playground = playground;
+		model.Playground = playground;
 	}
 
 	function initRacket () {
@@ -22,8 +22,8 @@
 		var y = playground.height - playground.interval - height;
 		var x = playground.width / 2 - width / 2;
 
-		racket = new GAME.Model.GameObject('racket', x, y, width, height);
-		GAME.Model.racket = racket;
+		racket = new model.GameObject('racket', x, y, width, height);
+		model.Racket = racket;
 	}
 
 	function initBall () {
@@ -33,8 +33,8 @@
 		var x = racket.x + racket.width / 2 - width / 2;
 		var y = racket.y - height;
 
-		ball = new GAME.Model.GameObject('ball', x, y, width, height);
-		GAME.Model.ball = ball;
+		ball = new model.GameObject('ball', x, y, width, height);
+		model.Ball = ball;
 	}
 
 	function initBricks () {
@@ -53,7 +53,7 @@
 			y = y * playground.interval + (y - 1) * height;
 
 			bricks.push(
-				new GAME.Model.GameObject('brick', x, y, width, height)
+				new model.GameObject('brick', x, y, width, height)
 			);
 		}
 
@@ -64,7 +64,7 @@
 			}
 		}
 
-		GAME.Model.bricks = bricks;
+		model.Bricks = bricks;
 	}
 
 	model.init = function () {

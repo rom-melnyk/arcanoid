@@ -10,7 +10,7 @@
 	var GameObject = function (className, x, y, width, height) {
 		this.dom = document.createElement('div');
 		this.dom.className = className;
-		model.playground.dom.appendChild(this.dom);
+		model.Playground.dom.appendChild(this.dom);
 
 		// it's easier to handle dimension as numbers in contrast to their string representation in `element.style`
 		this.x = x;
@@ -67,7 +67,7 @@
 	 * Remove appropriate DOM element
 	 */
 	GameObject.prototype.delete = function () {
-		model.playground.dom.removeChild(this.dom);
+		model.Playground.dom.removeChild(this.dom);
 		this.dom = null;
 	};
 
