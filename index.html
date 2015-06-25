@@ -4,6 +4,18 @@
 	<meta charset="UTF-8">
 	<title>Arcanoid</title>
 	<link rel="stylesheet" href="/css/style.css"/>
+
+	<!-- Loading modules one by one -->
+	<script type="text/javascript" src="js/game.js"></script>
+	<script type="text/javascript" src="js/cfg.js"></script>
+	<script type="text/javascript" src="js/utils.js"></script>
+
+	<script type="text/javascript" src="js/model/model.js"></script>
+	<script type="text/javascript" src="js/model/game-object.js"></script>
+	<script type="text/javascript" src="js/model/playground.js"></script>
+	<script type="text/javascript" src="js/model/bricks.js"></script>
+	<script type="text/javascript" src="js/model/racket.js"></script>
+	<script type="text/javascript" src="js/model/ball.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -21,17 +33,10 @@
 			The Arcanoid Game. Learn Javascript! &copy; <a href="https://codedoc255.wordpress.com/">Roman Melnyk</a>, 2015
 		</span>
 	</div>
-	<!-- Loading modules one by one -->
-	<script type="text/javascript" src="js/base.js"></script>
-	<script type="text/javascript" src="js/utils.js"></script>
-	<script type="text/javascript" src="js/game-object.js"></script>
-	<script type="text/javascript" src="js/playground.js"></script>
-	<script type="text/javascript" src="js/brick.js"></script>
-	<script type="text/javascript" src="js/racket.js"></script>
-	<script type="text/javascript" src="js/ball.js"></script>
-	<!-- Now go ahead with the game -->
+
 	<script type="text/javascript">
 		// at this point browser is already aware about all the HTML above and we can refer to any element
+		GAME.Model.init();
 	</script>
 </body>
 </html>
