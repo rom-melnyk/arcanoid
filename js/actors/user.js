@@ -1,3 +1,3 @@
 (function (actors) {
-	actors.user = null; // will be initialized later
+	actors.User = null; // will be initialized later
 })(GAME.Actors);

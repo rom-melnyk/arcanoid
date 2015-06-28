@@ -48,7 +48,7 @@
 	};
 
 	/**
-	 * Check if this object intersect another one
+	 * Check if this object intersects another one
 	 * @param {GameObject} another
 	 * @return {Boolean}
 	 */
