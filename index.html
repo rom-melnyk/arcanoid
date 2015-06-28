@@ -9,6 +9,7 @@
 	<script type="text/javascript" src="js/game.js"></script>
 	<script type="text/javascript" src="js/cfg.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
+	<script type="text/javascript" src="js/dispatcher.js"></script>
 
 	<script type="text/javascript" src="js/model/model.js"></script>
 	<script type="text/javascript" src="js/model/game-object.js"></script>
@@ -21,7 +22,7 @@
 	<script type="text/javascript" src="js/actors/timer.js"></script>
 	<script type="text/javascript" src="js/actors/user.js"></script>
 
-	<script type="text/javascript" src="js/dispatcher.js"></script>
+	<script type="text/javascript" src="js/gameplay.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -41,8 +42,7 @@
 	</div>
 
 	<script type="text/javascript">
-		// at this point browser is already aware about all the HTML above and we can refer to any element
-		GAME.Model.init();
+		GAME.doScenario();
 	</script>
 </body>
 </html>

@@ -2,18 +2,19 @@
 	var isActive = false;
 
 	function kbdHandler (evt) {
-		console.log('Keyboard event');
-		console.log(evt);
+		if (evt.keyCode === 32) { // space
+			GAME.Dispatcher.emit(actors.User.events.playPause);
+		}
 	}
 
 	function mouseHandler (evt) {
-		console.log('Mouse event');
-		console.log(evt);
+		GAME.Dispatcher.emit(actors.User.events.mouse, evt.clientX);
 	}
 
 	actors.User = {
 		events: {
-			// event names will be here
+			playPause: 'play-pause',
+			mouse: 'mouse'
 		},
 
 		start: function () {
