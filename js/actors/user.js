@@ -1,5 +1,7 @@
 (function (actors) {
 	var isActive = false;
+	var previousX = null;
+	actors.User = null; // will be initialized later
 
 	function kbdHandler (evt) {
 		if (evt.keyCode === 32) { // space
@@ -7,21 +9,28 @@
 		}
 	}
 
-	function mouseHandler (evt) {
-		GAME.Dispatcher.emit(actors.User.events.mouse, evt.clientX);
+	function mouseMoveHandler (evt) {
+		previousX = previousX || evt.clientX;
+		GAME.Dispatcher.emit(actors.User.events.mouseMove, (evt.clientX - previousX) * GAME.CFG.mouseSensitivity);
+		previousX = evt.clientX;
 	}
 
-	actors.User = {
+	function mouseClickHandler (evt) {
+		GAME.Dispatcher.emit(actors.User.events.mouseClick, evt);
+		previousX = evt.clientX;
+	}
+
+	var user = {
 		events: {
 			playPause: 'play-pause',
-			mouse: 'mouse'
+			mouseMove: 'mouse-move',
+			mouseClick: 'mouse-click'
 		},
 
 		start: function () {
 			if (isActive) return false;
 
-			document.addEventListener('keydown', kbdHandler);
-			document.addEventListener('mouseover', mouseHandler);
+			document.addEventListener('mousemove', mouseMoveHandler);
 			isActive = true;
 			return true;
 		},
@@ -29,8 +38,8 @@
 		pause: function () {
 			if (!isActive) return false;
 
-			document.removeEventListener('keydown', kbdHandler);
-			document.removeEventListener('mouseover', mouseHandler);
+			document.removeEventListener('mousemove', mouseMoveHandler);
+			previousX = null;
 			isActive = false;
 			return true;
 		},
@@ -45,5 +54,14 @@
 		winsWhen: function () {
 			return GAME.Model.Bricks.length === 0;
 		}
+	};
+
+	actors.initUser = function () {
+		actors.User = user;
+
+		// In contrast to the Timer, these two must be accessible globally,
+		// even if the game is paused
+		document.addEventListener('keydown', kbdHandler);
+		document.addEventListener('click', mouseClickHandler); // we will use it later
 	};
 })(GAME.Actors);

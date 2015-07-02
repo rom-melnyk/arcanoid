@@ -13,7 +13,7 @@
 		 */
 		on: function (event, handler) {
 			if (!handlers[event]) handlers[event] = [];
-			if (handlers[event].indexOf(handler) !== -1) handlers[event].push(handler);
+			if (handlers[event].indexOf(handler) === -1) handlers[event].push(handler);
 		},
 
 		/**

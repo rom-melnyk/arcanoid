@@ -1,7 +1,8 @@
 (function (actors) {
 	var timerId = null;
+	actors.Timer = null; // will be initialized later
 
-	actors.Timer = {
+	var timer = {
 		/**
 		 * The event name
 		 */
@@ -12,7 +13,7 @@
 
 			timerId = setInterval(function () {
 				GAME.Dispatcher.emit(actors.Timer.event);
-			}, GAME.CFG.fps);
+			}, 1000 / GAME.CFG.fps);
 
 			return true;
 		},
@@ -40,4 +41,8 @@
 			return GAME.Model.Ball.y + GAME.Model.Ball.height >= GAME.Model.Playground.height;
 		}
 	};
+
+	actors.initTimer = function () {
+		actors.Timer = timer;
+	}
 })(GAME.Actors);
