@@ -54,6 +54,7 @@
 	 * Once we change something within the object, let's reflect it visually
 	 */
 	GameObject.prototype.draw = function () {
+		// There is no necessity to use more than 4 decimals for DOM element positioning
 		this.dom.style.top = round10k(this.y) + 'px';
 		this.dom.style.left = round10k(this.x) + 'px';
 		this.dom.style.width = round10k(this.width) + 'px';
