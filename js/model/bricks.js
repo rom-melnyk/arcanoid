@@ -20,11 +20,20 @@
 		bricks.push(
 			new model.GameObject('brick', x, y, width, height)
 		);
+
+		if (y + height > bricks.bottomLine) bricks.bottomLine = y + height;
 	}
 
 	model.initBricks = function () {
 		playground = model.Playground;
 		bricks = [];
+		/**
+		 * @cfg {Number} bottomLine
+		 * Means the bottom coordinate of the lowest brick; when the ball is below, there is no necessity
+		 * to check if it hots any brick.
+		 */
+		bricks.bottomLine = 0;
+
 		width = (playground.width - playground.interval - BRICKS_PER_ROW * playground.interval) / BRICKS_PER_ROW;
 		height = playground.height * 0.05;
 

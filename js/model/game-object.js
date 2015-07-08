@@ -1,4 +1,8 @@
 (function (model) {
+	function round10k (x) {
+		return Math.round(x * 10000) / 10000;
+	}
+
 	/**
 	 * This is the constructor for bricks, ball and rocket
 	 * @param {String} className
@@ -6,8 +10,13 @@
 	 * @param {Number} y
 	 * @param {Number} width
 	 * @param {Number} height
+	 * @param {Number} [dx=0]
+	 * @param {Number} [dy=0]
 	 */
-	var GameObject = function (className, x, y, width, height) {
+	var GameObject = function (className, x, y, width, height, dx, dy) {
+		dx = dx || 0;
+		dy = dy || 0;
+
 		this.dom = document.createElement('div');
 		this.dom.className = className;
 		model.Playground.dom.appendChild(this.dom);
@@ -21,8 +30,8 @@
 		/**
 		 * If element moves, this pair determines how coordinates change
 		 */
-		this.dx = 0;
-		this.dy = 0;
+		this.dx = dx;
+		this.dy = dy;
 
 		/**
 		 * Reset the element with the initial values
@@ -32,6 +41,10 @@
 			this.y = y;
 			this.width = width;
 			this.height = height;
+			this.dx = dx;
+			this.dy = dy;
+
+			this.draw();
 		};
 
 		this.draw();
@@ -41,10 +54,10 @@
 	 * Once we change something within the object, let's reflect it visually
 	 */
 	GameObject.prototype.draw = function () {
-		this.dom.style.top = this.y + 'px';
-		this.dom.style.left = this.x + 'px';
-		this.dom.style.width = this.width + 'px';
-		this.dom.style.height = this.height + 'px';
+		this.dom.style.top = round10k(this.y) + 'px';
+		this.dom.style.left = round10k(this.x) + 'px';
+		this.dom.style.width = round10k(this.width) + 'px';
+		this.dom.style.height = round10k(this.height) + 'px';
 	};
 
 	/**
