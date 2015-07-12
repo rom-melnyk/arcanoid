@@ -46,13 +46,6 @@
 
 		isActive: function () {
 			return isActive;
-		},
-
-		/**
-		 * @return {Boolean}
-		 */
-		winsWhen: function () {
-			return GAME.Model.Bricks.length === 0;
 		}
 	};
 

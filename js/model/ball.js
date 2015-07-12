@@ -6,14 +6,50 @@
 	var timer;
 	model.Ball = null; // will be initialized later
 
+	/**
+	 * @private
+	 * Reflect the ball from the  brick
+	 */
+	function _reflectFromBrick (brick) {
+		var centerX = ball.x + ball.width / 2;
+		var centerY = ball.y + ball.height / 2;
+
+		if (centerX > brick.x && centerX < brick.x + brick.width) { // top, bottom
+			ball.dy = -ball.dy;
+		} else if (centerY > brick.y && centerY < brick.y + brick.height) { // left, right
+			ball.dx = -ball.dx;
+		} else { // angles
+			ball.dx = -ball.dx;
+			ball.dy = -ball.dy;
+		}
+	}
+
+	/**
+	 * @private
+	 * This magic changes the reflection angle
+	 * depending on the which part of the racket touched the ball.
+	 *
+	 * The more peripheral part of the racket the ball hits, the more the angle changes
+	 */
+	function _changeDxReflectingFromRacket () {
+		// means how far from ball's center of from racket's center. -1 (left) ... 0 (center) ... +1 (right)
+		var dCenter;
+
+		ball.x -= ball.dx; // return back x-position...
+		dCenter = ((ball.x + ball.width / 2) - (racket.x + racket.width / 2)) / (racket.width / 2);
+
+		ball.dx = dCenter * playground.width * .005 + (1 - Math.abs(dCenter)) * ball.dx;
+		ball.x += ball.dx; // ...and shift it in new way
+	}
+
 	model.initBall = function () {
 		racket = model.Racket;
 		playground = model.Playground;
 		timer = GAME.Actors.Timer;
 
 		// place the ball on the middle of the racket
-		var width = racket.height * 2;
-		var height = racket.height * 2;
+		var width = racket.height * 1.5;
+		var height = racket.height * 1.5;
 		var x = racket.x + racket.width / 2 - width / 2;
 		var y = racket.y - height;
 
@@ -21,10 +57,6 @@
 		var dy = playground.height / GAME.CFG.fps / 2;
 
 		ball = model.Ball = new model.GameObject('ball', x, y, width, height, dx, dy);
-
-		// Although these vars are used in the `ball.move`, they are declared here.
-		// This fixes a memory leak if declaring 'em each time the `ball.move` is invoked (30+ times per second)
-		var dCenter, centerX, centerY, i;
 
 		/**
 		 * Describes ball moving principle.
@@ -50,20 +82,9 @@
 
 			// top
 			if (this.y < bricks.bottomLine) { // bricks area
-				for (i = 0; i < bricks.length; i++) {
+				for (var i = 0; i < bricks.length; i++) {
 					if (ball.intersects(bricks[i])) {
-						// This code ensures the ball reflecting fine from bricks
-						centerX = this.x + this.width / 2;
-						centerY = this.y + this.height / 2;
-						if (centerX > bricks[i].x && centerX < bricks[i].x + bricks[i].width) { // top, bottom
-							this.dy = -this.dy;
-						} else if (centerY > bricks[i].y && centerY < bricks[i].y + bricks[i].height) { // left, right
-							this.dx = -this.dx;
-						} else { // angles
-							this.dx = -this.dx;
-							this.dy = -this.dy;
-						}
-
+						_reflectFromBrick(bricks[i]);
 						bricks[i].delete();
 						bricks.splice(i, 1);
 						break;
@@ -74,7 +95,9 @@
 					GAME.Dispatcher.emit('you-won');
 				}
 			}
-			if (this.y < 0) { // reflect from the ceiling
+
+			// reflect from the ceiling
+			if (this.y < 0) {
 				this.y = -this.y;
 				this.dy = -this.dy;
 			}
@@ -82,16 +105,9 @@
 			// reflect from the racket or fall on the floor
 			if (this.y + this.height > racket.y) {
 				if (this.intersects(racket)) { // reflect from the racket only
-					this.y = racket.y - this.height - (this.y + this.height - racket.y);
+					_changeDxReflectingFromRacket();
 					this.dy = -this.dy;
-
-					// This magic changes the reflection angle
-					// depending on the which part of the racket touched the ball.
-					// The more peripheral part of the racket the ball hits, the more the angle changes
-					dCenter = ((this.x + this.width / 2) - (racket.x + racket.width / 2)) / (racket.width / 2);
-					this.x -= this.dx; // return back x-position...
-					this.dx = dCenter * playground.width * .005 + (1 - Math.abs(dCenter)) * this.dx;
-					this.x += this.dx; // ...and shift it in new way
+					this.y = racket.y - this.height - (this.y + this.height - racket.y);
 				} else { // the ball missed the racket; you lost!
 					GAME.Dispatcher.emit('you-lose');
 				}

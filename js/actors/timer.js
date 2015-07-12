@@ -32,13 +32,6 @@
 		 */
 		isActive: function () {
 			return !!timerId;
-		},
-
-		/**
-		 * @return {Boolean}
-		 */
-		winsWhen: function () {
-			return GAME.Model.Ball.y + GAME.Model.Ball.height >= GAME.Model.Playground.height;
 		}
 	};
 
