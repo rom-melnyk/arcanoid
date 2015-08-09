@@ -15,11 +15,13 @@
 	}
 
 	GAME.doScenario = function () {
+		GAME.initState();
+		GAME.initLevels();
 		GAME.Actors.initUser();
 		GAME.Actors.initTimer();
 		GAME.Model.init();
 
-		GAME.Dispatcher.on(GAME.Actors.User.events.playPause, function () {
+		GAME.Dispatcher.on(GAME.Dispatcher.PLAY_PAUSE, function () {
 			if (GAME.Actors.User.isActive()) {
 				pause();
 			} else {
@@ -27,13 +29,13 @@
 			}
 		});
 
-		GAME.Dispatcher.on('you-lose', function () {
+		GAME.Dispatcher.on(GAME.Dispatcher.YOU_LOSE, function () {
 			console.log('You lose!');
 			pause();
 			reset();
 		});
 
-		GAME.Dispatcher.on('you-won', function () {
+		GAME.Dispatcher.on(GAME.Dispatcher.YOU_WON, function () {
 			console.log('You won! Congratulations!');
 			pause();
 			reset();

@@ -15,7 +15,7 @@
 		 */
 		Bricks: {
 			bricksPerRow: 10,
-			brickRows: 3
+			brickRows: 5
 		}
 	};
 })(GAME);

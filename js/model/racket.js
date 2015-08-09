@@ -33,7 +33,7 @@
 		};
 
 		// mouse-depended behavior
-		GAME.Dispatcher.on(user.events.mouseMove, function (dx) {
+		GAME.Dispatcher.on(GAME.Dispatcher.MOUSE_MOVE, function (dx) {
 			racket.move(dx);
 			racket.draw();
 		});

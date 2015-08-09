@@ -5,28 +5,22 @@
 
 	function kbdHandler (evt) {
 		if (evt.keyCode === 32) { // space
-			GAME.Dispatcher.emit(actors.User.events.playPause);
+			GAME.Dispatcher.emit(GAME.Dispatcher.PLAY_PAUSE);
 		}
 	}
 
 	function mouseMoveHandler (evt) {
 		previousX = previousX || evt.clientX;
-		GAME.Dispatcher.emit(actors.User.events.mouseMove, (evt.clientX - previousX) * GAME.CFG.mouseSensitivity);
+		GAME.Dispatcher.emit(GAME.Dispatcher.MOUSE_MOVE, (evt.clientX - previousX) * GAME.CFG.mouseSensitivity);
 		previousX = evt.clientX;
 	}
 
 	function mouseClickHandler (evt) {
-		GAME.Dispatcher.emit(actors.User.events.mouseClick, evt);
+		GAME.Dispatcher.emit(GAME.Dispatcher.MOUSE_CLICK, evt);
 		previousX = evt.clientX;
 	}
 
 	var user = {
-		events: {
-			playPause: 'play-pause',
-			mouseMove: 'mouse-move',
-			mouseClick: 'mouse-click'
-		},
-
 		start: function () {
 			if (isActive) return false;
 

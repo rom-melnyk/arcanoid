@@ -1,0 +1,13 @@
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#009ec3+0,3bbee2+68,009ec3+100 */
+.brick.regular {
+	background: linear-gradient(to bottom, #98592c 0%,#bd8a61 68%,#98592c 100%);
+}
+.brick.regular-plus {
+	background: linear-gradient(to bottom, #982c33 0%,#bd6164 68%,#982c33 100%);
+}
+.brick.extra {
+	background: linear-gradient(to bottom, #784282 0%,#a374aa 68%,#784282 100%);
+}
+.brick.armor {
+	background: linear-gradient(to bottom, #a1a1a1 0%,#bcbcbc 68%,#a1a1a1 100%);
+}

@@ -60,12 +60,12 @@ html, body {
 }
 
 .ball {
+	background: radial-gradient(ellipse at 30% 40%, #a8213e 10%,#8f0222 44%,#6d0019 100%);
 	border-radius: 50%;
-	background-color: #833;
 }
 
 .racket {
-	background-color: #aaa;
+	background: linear-gradient(to bottom, #a1a1a1 0%,#bcbcbc 68%,#a1a1a1 100%);
 	border-radius: 10px 10px 4px 4px;
 }
 

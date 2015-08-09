@@ -3,16 +3,11 @@
 	actors.Timer = null; // will be initialized later
 
 	var timer = {
-		/**
-		 * The event name
-		 */
-		event: 'timer',
-
 		start: function () {
 			if (timerId) return false;
 
 			timerId = setInterval(function () {
-				GAME.Dispatcher.emit(actors.Timer.event);
+				GAME.Dispatcher.emit(GAME.Dispatcher.TIMER);
 			}, 1000 / GAME.CFG.fps);
 
 			return true;

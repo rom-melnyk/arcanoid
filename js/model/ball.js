@@ -42,6 +42,15 @@
 		ball.x += ball.dx; // ...and shift it in new way
 	}
 
+	function _hitBrick (brick, i) {
+		brick.hits--;
+		GAME.Dispatcher.emit(GAME.Dispatcher.BRICK_HIT, brick.value);
+		if (brick.hits === 0) {
+			brick.delete();
+			bricks.splice(i, 1);
+		}
+	}
+
 	model.initBall = function () {
 		racket = model.Racket;
 		playground = model.Playground;
@@ -85,14 +94,13 @@
 				for (var i = 0; i < bricks.length; i++) {
 					if (ball.intersects(bricks[i])) {
 						_reflectFromBrick(bricks[i]);
-						bricks[i].delete();
-						bricks.splice(i, 1);
+						_hitBrick(bricks[i], i);
 						break;
 					}
 				}
 
 				if (bricks.length === 0) {
-					GAME.Dispatcher.emit('you-won');
+					GAME.Dispatcher.emit(GAME.Dispatcher.YOU_WIN);
 				}
 			}
 
@@ -109,13 +117,13 @@
 					this.dy = -this.dy;
 					this.y = racket.y - this.height - (this.y + this.height - racket.y);
 				} else { // the ball missed the racket; you lost!
-					GAME.Dispatcher.emit('you-lose');
+					GAME.Dispatcher.emit(GAME.Dispatcher.YOU_LOSE);
 				}
 			}
 		};
 
 		// ball movement
-		GAME.Dispatcher.on(timer.event, function () {
+		GAME.Dispatcher.on(GAME.Dispatcher.TIMER, function () {
 			ball.move();
 			ball.draw();
 		});
